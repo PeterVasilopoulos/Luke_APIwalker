@@ -13,6 +13,7 @@ const People = () => {
     // Variable to check if there is an error
     const [errorCheck, setErrorCheck] = useState(false);
 
+
     // UseEffect to get data from api
     useEffect(() => {
         axios.get(`https://swapi.dev/api/people/${id}`)
@@ -39,6 +40,7 @@ const People = () => {
     const [world, setWorld] = useState("");
     const [worldId, setWorldId] = useState("");
 
+
     // UseEffect to get the character's homeworld from the api
     useEffect(() => {
         axios.get(`${info.homeworld}`)
@@ -56,10 +58,13 @@ const People = () => {
             })
     }, [info]);
 
+
     // Function to get the world id
     const getWorldId = (world) => {
+        // Variable to hold the index of the slash before the id
         let idx = 0;
 
+        // Loop to find the index for the variable above
         for(let i = world.length - 2; i >= 0; i--) {
             if(world[i] == '/') {
                 idx = i;
@@ -67,12 +72,13 @@ const People = () => {
             }
         }
 
+        // Slice the world url to get the planet id
         let newId = world.slice(idx + 1, world.length -1);
-        console.log(idx);
-        console.log(newId);
         return newId;
     }
 
+    // Displaying HTML -----------------------------------------------------------------
+    // Check if there is an error and output the error page if so
     if (errorCheck) {
         return (
             <div>
