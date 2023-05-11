@@ -24,3 +24,17 @@
 #search-id {
   width: 65px;
 }
+
+.submit {
+  text-decoration: none;
+  color: rgb(0, 123, 255);
+  border: 2px solid rgb(0, 123, 255);
+  border-radius: 6px;
+  background-color: white;
+  padding: 4px 8px;
+}
+
+.submit:hover {
+  color: white;
+  background-color: rgb(0, 123, 255);
+}

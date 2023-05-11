@@ -1,36 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 const SearchBar = () => {
-    // Variable to hold the information from the api
-    const [info, setInfo] = useState([]);
-
-    // Variables to hold form info
-    const [resource, setResource] = useState("");
+// Variables to hold form info 
+    const [resource, setResource] = useState("planets");
     const [resourceId, setResourceId] = useState(1);
-
-    // Variable to check if the button has been clicked
-    let [buttonClicked, setButtonClicked] = useState(false);
-
-    // Function to run when form has been submitted
-    const handleSubmit = (e) => {
-        // Prevent default button behavior
-        e.preventDefault();
-        // Create variable to hold form info
-        const formInfo = {resource, resourceId}
-        // UseEffect to get data from api
-        useEffect(() => {
-            axios.get(`https://swapi.dev/api/${resource}/${resourceId}`)
-            .then((response) => {
-                // Log data to check formatting
-                console.log(response);
-            })
-            .catch((err) => {
-                // Log error if we get one
-                console.log("Error: ", err);
-            })
-        }, [buttonClicked]);
-    }
 
     return (
         <div>
@@ -39,7 +14,12 @@ const SearchBar = () => {
                 <div className='search-bar-section'>
                     <label>Search For:</label>
                     <select name="resource" id="search-select" onChange={(e) => setResource(e.target.value)}>
-                        <option value="">people</option>
+                        <option value="planets">Planets</option>
+                        <option value="starships">Starships</option>
+                        <option value="vehicles">Vehicles</option>
+                        <option value="people">People</option>
+                        <option value="films">Films</option>
+                        <option value="species">Species</option>
                     </select>
                 </div>
                 {/* ID Input */}
@@ -48,7 +28,9 @@ const SearchBar = () => {
                     <input type="number" name="resourceId" id="search-id" onChange={(e) => setResourceId(e.target.value)}/>
                 </div>
                 {/* Search Button */}
-                <button onClick={handeSubmit}>Search</button>
+                <Link to={`/${resource}/${resourceId}`}>
+                    <button className='submit'>Search</button>
+                </Link>
             </div>
         </div>
     )
