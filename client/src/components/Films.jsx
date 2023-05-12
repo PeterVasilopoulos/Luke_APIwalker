@@ -41,10 +41,9 @@ const Films = () => {
     } else {
         return (
             <div>
-                <h1>{info.name}</h1>
-                <h3>Hair Color: {info.hair_color}</h3>
-                <h3>Height: {info.height}cm</h3>
-                <h3>Homeworld: {info.population}</h3>
+                <h1>{info.title}</h1>
+                <h3>Director: {info.director}</h3>
+                <p>Intro: {info.opening_crawl}</p>
             </div>
         )
     }
